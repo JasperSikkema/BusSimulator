@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="003c54e4-4987-4f94-aaec-26142778c753" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/hanze/nl/bussimulator/BussimulatorSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hanze/nl/bussimulator/Bus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hanze/nl/bussimulator/Bus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hanze/nl/infobord/InfoBord.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hanze/nl/infobord/InfoBord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hanze/nl/infobord/JSONBericht.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hanze/nl/infobord/JSONBericht.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hanze/nl/mockdatabaselogger/ArrivaLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hanze/nl/mockdatabaselogger/ArrivaLogger.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hanze/nl/tijdtools/InfobordTijdFuncties.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hanze/nl/tijdtools/InfobordTijdFuncties.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/hanze/nl/tijdtools/TijdFuncties.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/hanze/nl/tijdtools/TijdFuncties.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_3_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bussimulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bussimulator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hanze/nl/bussimulator/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hanze/nl/bussimulator/Producer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,11 +44,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MonetarySystem2" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -115,6 +114,7 @@
       <workItem from="1642006018015" duration="2408000" />
       <workItem from="1642091467382" duration="4939000" />
       <workItem from="1642414055717" duration="5348000" />
+      <workItem from="1642444986353" duration="67000" />
     </task>
     <servers />
   </component>
