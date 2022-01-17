@@ -43,11 +43,9 @@ public class Producer {
     
     
     private void sendTextMessage(String themessage) throws JMSException {
-//    	System.out.println("Producer starting message: " + new Date());
         Destination destination = session.createQueue(subject);
         MessageProducer producer = session.createProducer(destination);
         TextMessage msg = session.createTextMessage(themessage);
         producer.send(msg);
-//        System.out.println("Sent message '" + msg.getText() + "'");
-    }    
+    }
 }

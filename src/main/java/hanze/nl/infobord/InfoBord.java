@@ -82,11 +82,15 @@ public class InfoBord {
 				}
 			}
 		}
+		repaint(aankomsttijden, aantalRegels, infoTekst);
+	}
+
+	public void repaint(int[] aankomsttijden, int aantalRegels, String[] infoTekst) {
 		if(checkRepaint(aantalRegels, aankomsttijden)){
 			repaintInfoBord(infoTekst);
 		}
 	}
-	
+
 	private boolean checkRepaint(int aantalRegels, int[] aankomsttijden){
 		int totaalTijden=0;
 		for(int i=0; i<aantalRegels;i++){
