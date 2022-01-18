@@ -2,8 +2,6 @@ package hanze.nl.bussimulator;
 
 import com.thoughtworks.xstream.XStream;
 
-import java.util.HashMap;
-
 public class ETAZender {
 
     public ETAZender(){
