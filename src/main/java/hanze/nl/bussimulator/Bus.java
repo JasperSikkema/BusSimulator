@@ -1,9 +1,8 @@
 package hanze.nl.bussimulator;
 
-import com.thoughtworks.xstream.XStream;
 import hanze.nl.bussimulator.Halte.Positie;
 
-import java.util.HashMap;
+
 
 public class Bus{
 
@@ -15,7 +14,8 @@ public class Bus{
 	private boolean bijHalte;
 	private String busID;
 	private ETAZender zender;
-	
+	private Logger logger;
+
 	Bus(Lijnen lijn, Bedrijven bedrijf, int richting){
 		this.lijn=lijn;
 		this.bedrijf=bedrijf;
@@ -25,6 +25,7 @@ public class Bus{
 		this.bijHalte = false;
 		this.busID = "Niet gestart";
 		this.zender = new ETAZender();
+		this.logger = new Logger();
 	}
 
 	public void setbusID(int starttijd){
@@ -35,21 +36,20 @@ public class Bus{
 		Positie volgendeHalte = lijn.getHalte(halteNummer+richting).getPositie();
 		totVolgendeHalte = lijn.getHalte(halteNummer).afstand(volgendeHalte);
 	}
-	
-	public boolean halteBereikt(){
-		halteNummer+=richting;
-		bijHalte=true;
-		if ((halteNummer>=lijn.getLengte()-1) || (halteNummer == 0)) {
-			System.out.printf("Bus %s heeft eindpunt (halte %s, richting %d) bereikt.%n", 
-					lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));
-			return true;
-		}
-		else {
-			System.out.printf("Bus %s heeft halte %s, richting %d bereikt.%n", 
-					lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));		
+
+	public void bijHalteAangekomen() {
+		halteNummer += richting;
+		bijHalte = true;
+		if (eindHalteBereikt()) {
+			logger.logEindpuntBereikt(lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));
+		} else {
+			logger.logHalteBereikt(lijn.name(), lijn.getHalte(halteNummer), lijn.getRichting(halteNummer));
 			naarVolgendeHalte();
-		}		
-		return false;
+		}
+	}
+
+	public boolean eindHalteBereikt() {
+		return (halteNummer >= lijn.getLengte() - 1) || (halteNummer == 0);
 	}
 	
 	public void start() {
@@ -59,16 +59,16 @@ public class Bus{
 		naarVolgendeHalte();
 	}
 
-	public boolean move(){
+	public boolean move() {
 		boolean eindpuntBereikt = false;
-		bijHalte=false;
+		bijHalte = false;
 		if (halteNummer == -1) {
 			start();
-		}
-		else {
+		} else {
 			totVolgendeHalte--;
-			if (totVolgendeHalte==0){
-				eindpuntBereikt=halteBereikt();
+			if (totVolgendeHalte == 0) {
+				eindpuntBereikt = eindHalteBereikt();
+				bijHalteAangekomen();
 			}
 		}
 		return eindpuntBereikt;
