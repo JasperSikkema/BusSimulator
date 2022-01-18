@@ -3,6 +3,8 @@ package hanze.nl.bussimulator;
 import com.thoughtworks.xstream.XStream;
 import hanze.nl.bussimulator.Halte.Positie;
 
+import java.util.HashMap;
+
 public class Bus{
 
 	private Bedrijven bedrijf;
@@ -12,6 +14,7 @@ public class Bus{
 	private int richting;
 	private boolean bijHalte;
 	private String busID;
+	private ETAZender zender;
 	
 	Bus(Lijnen lijn, Bedrijven bedrijf, int richting){
 		this.lijn=lijn;
@@ -21,8 +24,9 @@ public class Bus{
 		this.totVolgendeHalte = 0;
 		this.bijHalte = false;
 		this.busID = "Niet gestart";
+		this.zender = new ETAZender();
 	}
-	
+
 	public void setbusID(int starttijd){
 		this.busID=starttijd+lijn.name()+richting;
 	}
@@ -69,41 +73,14 @@ public class Bus{
 		}
 		return eindpuntBereikt;
 	}
-	
+
 	public void sendETAs(int nu){
-		int i=0;
-		Bericht bericht = new Bericht(lijn.name(),bedrijf.name(),busID,nu);
-		if (bijHalte) {
-			ETA eta = new ETA(lijn.getHalte(halteNummer).name(),lijn.getRichting(halteNummer),0);
-			bericht.ETAs.add(eta);
-		}
-		Positie eerstVolgende=lijn.getHalte(halteNummer+richting).getPositie();
-		int tijdNaarHalte=totVolgendeHalte+nu;
-		for (i = halteNummer+richting ; !(i>=lijn.getLengte()) && !(i < 0); i=i+richting ){
-			tijdNaarHalte+= lijn.getHalte(i).afstand(eerstVolgende);
-			ETA eta = new ETA(lijn.getHalte(i).name(), lijn.getRichting(i),tijdNaarHalte);
-			bericht.ETAs.add(eta);
-			eerstVolgende=lijn.getHalte(i).getPositie();
-		}
-		bericht.eindpunt=lijn.getHalte(i-richting).name();
-		sendBericht(bericht);
-	}
-	
-	public void sendLastETA(int nu){
-		Bericht bericht = new Bericht(lijn.name(),bedrijf.name(),busID,nu);
-		String eindpunt = lijn.getHalte(halteNummer).name();
-		ETA eta = new ETA(eindpunt,lijn.getRichting(halteNummer),0);
-		bericht.ETAs.add(eta);
-		bericht.eindpunt = eindpunt;
-		sendBericht(bericht);
+		BusInfo busInfo = new BusInfo(lijn, bedrijf, richting, halteNummer, totVolgendeHalte, bijHalte, busID);
+		zender.sendETAs(nu, busInfo);
 	}
 
-	public void sendBericht(Bericht bericht){
-    	XStream xstream = new XStream();
-    	xstream.alias("Bericht", Bericht.class);
-    	xstream.alias("ETA", ETA.class);
-    	String xml = xstream.toXML(bericht);
-    	Producer producer = new Producer();
-    	producer.sendBericht(xml);		
+	public void sendLastETA(int nu) {
+		BusInfo busInfo = new BusInfo(lijn, bedrijf, richting, halteNummer, totVolgendeHalte, bijHalte, busID);
+		zender.sendETAs(nu, busInfo);
 	}
 }
